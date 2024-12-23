@@ -1,0 +1,49 @@
+React
+
+
+Its a popular javascript library developed by facebook for building UI especially the single page application where data changes dynamically.It allows the developers to create reusable UI components to make the code easier and scalable.
+
+
+Difference between library and framework
+
+
+Library 
+
+
+Definition : Its a collection of pre -written code that you can call to perform specific task
+
+
+Control: We can control the application flow.We can decide when and where we can call the library
+
+
+Example:React is a library where developers used to structure the application and when to call React methods
+
+
+Analogy : Think like a toolbox, pick a tool you need and use them as required.
+
+
+
+Framework
+
+
+Definition: A full fledged platform that provides structure and guidelines to develop the application
+
+
+Control:The framework controls the application flow and calls our code at certain points.This is inversion of control
+
+
+Example : Angular is a framework because it defines how you structure your application and comes with built in feature like routing,dependency injection.
+
+
+Analogy:Its a template, you need to work within the predefined structure and rules.
+
+
+Why is react know as react
+
+React is called React because it is designed to "react" efficiently and dynamically to changes in data or state, enabling the user interface (UI) to update seamlessly.
+
+Reactiveness to data changes :virtual DOM
+
+Dynamic interaction : interactive and dynamic UI responds quickly to user actions.
+
+
