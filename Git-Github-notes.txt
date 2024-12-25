@@ -1,0 +1,162 @@
+##Git##
+
+Git is a distributed version control system (VCS) used to track changes in files, typically source code. 
+It enables developers to collaborate on projects, manage versions, and maintain a history of changes made to a codebase.
+
+##Github##
+
+
+GitHub is a cloud-based platform that uses Git for version control. 
+It provides hosting for Git repositories and adds features for collaboration, project management, and deployment.
+
+##Repositories##
+
+It is used to store code files
+
+##Local Repository##
+
+Whatever i stored inside my computer is local repository (In Local drives we have folders)
+
+##Cloud repository##
+
+Whatever i uploaded to github or any other pratforms that is getting stored in servers that is cloud repositories
+
+##git init##
+
+to create git environment in the local repository
+
+##git clone##
+
+to get the copy the cloud repo in our local computer
+
+##.git file in cloned repo##
+
+this is the file for the connection between local and cloud repo
+
+## Stagin and unstaging ##
+
+If we use the git add command it will make the file ready to be in a staged state
+And use git commit it will take the files to staging area
+And use git push to get the stage file to cloud
+
+##commit hash(#)
+
+This is unique number generating for each commit
+
+##git commit -m "Message"
+
+this  -m  is meant for Message
+
+While you give the message some standards have to follow
+
+Fix:message - if you are creating a commit that is related to issue fixes then this standard have to follow
+
+Feat:message - if you are adding any new feature then use this
+
+Refactor:message - If you are changing the already existing things like variable name, functionality use this
+
+Docs:message - If you are adding the documentation for your code then use this
+
+Chores:message - 
+
+!Fix:message - IF you are adding this then this is a breaking fix that will affect other developers
+
+##git push origin main 
+
+this is the push command 
+
+origin - this will be replaced by the cloned url and this cloned url will take from the .git folder
+
+##git pull
+
+to take the latest changes from the repository to our local
+
+##git status
+
+to get the status of the newly changed files
+
+if you changed 2 file and you added one file and commited it now you put the git status it will tell the another file is in
+untracked state
+
+Now you added that second file using git add , now you put git status it will tell the 2 file is in changes to be commited state
+
+##git diff
+
+This command is used to find the difference between our new changes and the one already in Cloud
+
+If we are changing Name from Elakkiya to Elakkiya Raja 
+Before giving git add , use git status - it will tell which line and what is changed
+
+##branching
+
+It allows to create seperate lines of development withing the same repository.This is basically used for not affecting the 
+main repository.
+
+##git branch 
+
+it tells about your current branch you are in.
+
+##git checkout -b "frontend"
+
+to create new branch
+
+##git checkout main
+
+if you want to got to some other branch
+
+##From your branch you made some changes and you are trying commit and push it .
+Basically it will throw one error
+
+^^^^^^
+    fatal:The current branch frontend has no upstream branch
+    git push --set-upstream origin frontend
+^^^^^^
+
+To overcome this error try this:
+
+git push origin frontend
+
+##Pull request
+
+If you are doing changes in your branch but everyone is working in main branch to add your changes to the 
+main branch you have to do::
+
+Create pull request - if your reviewers accepted your pull request it will be merged and added it your main branch
+
+
+##Merge conflicts
+
+When me and someone trying to change the same line , when i am trying to push it or someone did at that i get the merge conflicts
+
+##git stash
+
+If you are trying to add one line,but someone already added some changes in the same line.
+
+Now before commiting you are trying git pull at that time you get the error
+
+^^^^^Please commit your changes or stash them before you merge
+
+So what we need to do now is to do git stash it will add your local changes to a bucket in a stack, if you want that stack you 
+have to do git stash pop and get the latest stash - here also the merge conflict will come so here if needed accept your current change,
+or accept both then your change+the change already there , based on the sitation accept that
+
+then do git pull  the above error will not come
+
+
+##How to rename a branch?
+
+git branch -M "frontendNew"
+
+M- rename
+
+##git branch VS git branch -a
+
+git branch - it will list all your local branches
+
+git branches -a - it will list all the branches in the cloud
+
+###git log
+
+it displays all the commit details with user and commit name and commit stash
+
+

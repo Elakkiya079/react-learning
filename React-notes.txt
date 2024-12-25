@@ -47,3 +47,26 @@ Reactiveness to data changes :virtual DOM
 Dynamic interaction : interactive and dynamic UI responds quickly to user actions.
 
 
+What is CDN? Why do we use it ?
+
+
+What is crossOrigin in script tag?
+
+
+What is the difference between React and ReactDOM?
+
+
+What is the difference between react.development.js and react.pri=oduction.js?
+
+How to initialize local repository as git repository?
+
+git init
+git add .
+git commit -m "Comment"
+git push origin main
+
+npm
+
+npm manages packages but it doesnt stand for node package manager
+It is a standard repository for all the packages
+All the libraries, packages are hosted in npm
