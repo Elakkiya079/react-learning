@@ -93,7 +93,7 @@ There are 2 types of dependencies
    1.dev dependencies - these are required for development purposes
    2. normal dependencies - these are used for production also
 
-1)
+1 -
 Once you download it you can see that is downloaded ->package.json ->devDependencies (because we download it as a dev dependency)
 package.json is the configuration for packages that keeps track of all the dependencies and packages
   "parcel":"^2.8.3" - what is ^ ->it is caret
@@ -111,7 +111,7 @@ In package-lock.json
 there is a value called "integrity" - why it is used for 
 May developers say the code is working locally and it is not working in production, check this integrity 
 
-2)
+2 - 
 Once you download the package the node_modules will also get downloaded
 
 while you installing the parcel, it takes time right so this will take all the code of the parcel and put it inside the node_modules
@@ -207,3 +207,77 @@ It will minimize compression and everything takes up the dist folder
 ============
 
 Add the dist and .parcel-cache to .gitignore
+
+--------------------------------------------------------------------Class 3 -------------------------------------------------
+
+1 - To create scripts to run project in dev and production
+
+Everytime while running we use commands as npx parcel index.html
+
+To use this command everytime we can create srcipts in package.json, so that the npm will run the project for us
+
+"start": "parcel index.html",
+"build": "parcel build index.html",
+
+After adding this how to run the project ? 
+    If you start the dev build - npm run start (or) npm start
+    If want to start the prod build - npm run build
+*****In behind the scenes it calls the parcel index.html that is mentioned in the package.json
+
+2 - React Elements
+
+Like DOM elements in html we have react elements that is refer to the html tags
+
+React.createElement is basically stored as an object, while rendering it is invoked as a html element
+
+3 - JSX
+
+Its a javscript syntax to create the React Elements.
+
+JSX is not part of react.
+
+JSX is a convention where we can merge the html and js together
+
+JSX is not html inside javscript, jsx is html like or xml like syntax
+
+this jsx is also an object
+
+****
+JSX transpiled the code before it reaches the js engine ->parcel will do the job ->parcel is a beast it will give the 
+transpilation work to the package called babel.
+
+
+****
+How jsx works
+
+JSX code is transpiled to React.createElement using babel behind the scenes =>This CreateElement makes the js object =>and using the ReactDOM
+it renders as a html element
+
+
+
+-----------------
+
+class in react - in html we give it as class but here we have to give it as className
+
+Attributes to jsx are camelcase
+
+***Extensions****
+Bracket pair coloriser
+prettier
+ES Lint
+Better comments
+
+
+4 -  components
+
+Everything in react is a components
+
+There are 2 types of components 
+    1 - Class components ->old way of writing code => uses javascript classes
+    2 - Functional components -> new way of writing code => uses javascript functions
+        This is a javascript functions that returns the jsx code(react element)
+
+We have to render a component like root.render(<HeaderComponent />)
+
+
+** what is component composition - combining component into one another
