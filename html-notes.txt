@@ -1,0 +1,16 @@
+HTML semantics
+
+https://www.geeksforgeeks.org/html5-semantics/
+
+Accessibility
+Accessibility is the practice of making your website as usable by many users as possible. It helps people with disability and those who use mobile or slow internet connections.
+https://www.programiz.com/html/accessibility
+
+SEO basics HTML
+
+https://www.greengeeks.com/blog/html-tags-for-seo/
+
+
+HTML BAsics
+
+https://www.geeksforgeeks.org/html-tutorial/?ref=lbp

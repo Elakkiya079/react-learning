@@ -1,5 +1,6 @@
 React
 
+-----------------------------------------------------------------Class 1 -----------------------------------------------------------------
 
 Its a popular javascript library developed by facebook for building UI especially the single page application where data changes dynamically.It allows the developers to create reusable UI components to make the code easier and scalable.
 
@@ -32,7 +33,8 @@ Definition: A full fledged platform that provides structure and guidelines to de
 Control:The framework controls the application flow and calls our code at certain points.This is inversion of control
 
 
-Example : Angular is a framework because it defines how you structure your application and comes with built in feature like routing,dependency injection.
+Example : Angular is a framework because it defines how you structure your application and comes with built in feature like 
+routing,dependency injection.
 
 
 Analogy:Its a template, you need to work within the predefined structure and rules.
@@ -40,7 +42,8 @@ Analogy:Its a template, you need to work within the predefined structure and rul
 
 Why is react know as react
 
-React is called React because it is designed to "react" efficiently and dynamically to changes in data or state, enabling the user interface (UI) to update seamlessly.
+React is called React because it is designed to "react" efficiently and dynamically to changes in data or state, 
+enabling the user interface (UI) to update seamlessly.
 
 Reactiveness to data changes :virtual DOM
 
@@ -70,3 +73,137 @@ npm
 npm manages packages but it doesnt stand for node package manager
 It is a standard repository for all the packages
 All the libraries, packages are hosted in npm
+
+
+----------------------------------------------------------Class 2 --------------------------------------------------------
+
+npm - it manages packages but it does not stand for node package manager
+
+npm init - create the configuration file called package.json
+package.json - it is a configuration for npm
+packages are also called dependencies
+
+
+First, we have to download bundler - it bundles our app and packages our app to be production-ready
+
+Here there are different bundlers like Vite, parcel, web pack, etc
+We will be using parcel, to install parcel command is npm I -D parcel  - it downloads the parcel from the npm repository
+
+There are 2 types of dependencies
+   1.dev dependencies - these are required for development purposes
+   2. normal dependencies - these are used for production also
+
+1)
+Once you download it you can see that is downloaded ->package.json ->devDependencies (because we download it as a dev dependency)
+package.json is the configuration for packages that keeps track of all the dependencies and packages
+  "parcel":"^2.8.3" - what is ^ ->it is caret
+       suppose in the future this dependency is upgraded to 2.8.4 if you ^ then it automatically upgraded to 2.8.4
+   if you use ~ then if major update it automatically upgrades to that version like 3.0.0
+For safer side use ^
+
+If you installed the package then package.lock.json also gets downloaded 
+   this file keeps track of versions that are being installed
+
+package.json - keeps an approx version of the packages
+package-lock.json - keeps an exact version of the package
+
+In package-lock.json 
+there is a value called "integrity" - why it is used for 
+May developers say the code is working locally and it is not working in production, check this integrity 
+
+2)
+Once you download the package the node_modules will also get downloaded
+
+while you installing the parcel, it takes time right so this will take all the code of the parcel and put it inside the node_modules
+
+It downloads all the code of all the packages that are installed
+
+package.json is a configuration for our npm, and node_modules is like a database containing the actual data of the dependencies that our project needs.
+
+You have ques that I installed parcel then node_modules contains more folders. What are they?
+
+We installed a dependency parcel and the parcel has its own dependencies are the remaining folders inside node_modules - this is known as transitive dependencies **********
+
+If someone how many package.json files are  in your project and how npm knows parcel has its own dependencies and that dependencies have its own
+
+The answer is we have a package.json that contains the installed packages When you you open node_modules each folder has its own package.json and there they contain the dev and normal dependencies that's how knows.
+
+.gitignore
+
+If you want some files not to go to production and not go to git then use the .gitiignore files
+
+       In that file use /node_modules
+
+Why don't we want to put node_modules in git, and why is it okay to put package.json and package-lock.json into git
+
+package.json and package-lock.json are needed - because package.json contains all the dependencies and lock contains all the exact versions of the packages and the integrity
+
+why not node_modules  - If I have my package.json and package-lock.json then I can regenerate my node_modules -  use npm install
+
+Build an app using a parcel
+
+Command: npx parcel index.html
+
+After that, the parcel will create the server for you and it will host our app on the server
+
+npx - just like npm we have npm, when we do npm it installs the packages, while npx executes the package
+
+=====
+For now, we are using react through cdn from now on we try to install react through npm and use it 
+
+Because using CDN is a costly operation it makes the network call to unpkg.com but if already we have react in
+our node modules then it is easy
+
+Install react and react-dom - because cdn has 2 links one is react and react-dom development
+
+Now import  it into the index.js
+
+After you run the code you will see an error - Browser scripts cannot have imports or exports
+
+This means in the index.html file we are adding the reference for the js file in the script tag, so it 
+will consider it as a normal js file . Usually, js files don't have exports or imports. So we need to 
+tell this react project that the script is not just a js it's a react code for that,
+
+<script type="module" src="index.js" /> - it will not be a normal browser script it is considered a module
+
+======
+What parcel will give us?
+1. Dev build
+2. Local Server
+3. HMR - Hot Module Replacement
+     Parcel uses the file-watching algorithm that is written in C++, this keeps track of all the files 
+     whenever there is a file getting changed and saved it automatically refreshes the server
+4. Faster builds
+     It caches things for you so gives the faster build. It caches things in the .parcel-cache folder
+5. Image optimization
+     Parcel will do the image optimization as well, this is the highest operation in the browser - 
+     this minifies and compresses this as well.
+6. Minification
+7. Bundling
+8. Compressing
+9. Consistent hashing
+10. Code splitting
+11. Differential bundling - to support older supports as well
+12. Diagnostic - it gives good error suggestion
+13. Error handling
+14. Host apps on HTTPS as well - if you use npx parcel index.html https it will run the https for you
+15. Tree Shaking algorithm - if we have 100's of functions in the code but we are using 4 functions - 
+it will remove the unused code for you
+16. Different dev and production bundles
+
+======
+How to create a prod build
+
+npx parcel build index.html 
+
+Firstly it will throw an error because In package.json we gave the entry point as "main": App.js but 
+in parcel we are using npx parcel index.html here ou entry point is index.html that's why remove that main
+
+where does that build go up?
+
+It will minimize compression and everything takes up the dist folder
+
+
+============
+
+Add the dist and .parcel-cache to .gitignore
