@@ -281,3 +281,27 @@ We have to render a component like root.render(<HeaderComponent />)
 
 
 ** what is component composition - combining component into one another
+
+
+---------------------------------Clas 4 ------------------------------------------------
+
+
+props - props is nothing but the short form of properties 
+
+props we can use it like pass the properties to components
+
+Its same like passing an argument to the functions
+
+
+keys 
+
+when there are components as the same level, these components need to have unique id's .Why?
+
+Supppose if the new restaurant came in at the 1st place , react need to add the new component at the 1st place. If we dont have 
+id's react will re-render all the components.
+
+But if we gave unique id's then react will render the new id over there that's it.It will not re-render all the components.
+
+****** Dont use indexes as the key - react will not recommend this
+
+Why we will not use index as a key?
