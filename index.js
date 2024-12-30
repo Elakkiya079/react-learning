@@ -1,6 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+/**
+ * Header
+ *  -Logo
+ *  -Menu Items
+ *  -Cart
+ * Body
+ *  -Search
+ *  -Restaurant Container
+ *    -Restro Cards
+ * Footer
+ *  -Copyright
+ *  -Address
+ *  -Links
+ *  -Contact
+ */
+
+
+
 ///this is the basic code that we can write
 
 //const parent = React.createElement('div', { id: 'parent' }, [
