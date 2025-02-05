@@ -305,3 +305,31 @@ But if we gave unique id's then react will render the new id over there that's i
 ****** Dont use indexes as the key - react will not recommend this
 
 Why we will not use index as a key?
+
+
+
+------------------------------------class 5 ----------------------------------------
+
+2 types of import and export
+
+1.   defaut export - export defualt x;
+2.   named export  - if we have more than 1 to export then use the named export use export infront of the variable itself
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
