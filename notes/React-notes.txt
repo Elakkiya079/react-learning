@@ -315,6 +315,80 @@ Why we will not use index as a key?
 1.   defaut export - export defualt x;
 2.   named export  - if we have more than 1 to export then use the named export use export infront of the variable itself
 
+##   Why react is fast - It can do faster DOM manipulation
+
+##   state variable
+
+Its is a super powerful variable
+
+To create the state variable we need hooks - useState to create this variable
+
+hook is a normal javascript function but it has some super powers.
+
+useState - superpowerful react variables
+   it maintains the state of the component
+   it will automatically refreshes our component
+   whenever the state variable updates or changes react re-render the components
+useEffect - 
+   it contains 2 arguments
+     1.callback function
+     2.dependency array
+  this is getting called after the component renders ,as soon as the render cycle done this useEffect called.
+
+##############React uses reconcilition algorithm also known as ##React fiber##
+
+--   Virtual DOM -  it is an representation of an actual DOM - that is react elements - its an object
+--   Actual DOM - its actual html variables that is simply like div inside another div
+
+For ex: I have a resContainer: that contains 7 restaurant cards
+I am filtering out the 3 restaurant cards that the rating is above 4
+
+
+This algorithm what it will do is it will find out the difference between the previous virtual DOM and the updated virtual DOM,
+then it will update the UI
+
+
+------------------------------------------------------Class 6 -------------------------------------------
+
+Monolithic architecture
+
+When the apps were developed they are developed using monolithic architecture
+
+In the the application we have UI, backend,service layer , notification,authentication all written in the same pack
+
+If we have to change the color of the button we have to build the whole project and deploy the whole project
+
+Microservice architecture
+
+If we have the seperate project for all the UI, API, backend,notification this means seperation of concerns
+
+With the help of this microservice architecture every team will work on the seperate projects
+
+How do these service interact with each other? UI will talk to service, service will talk to backend.
+
+All these services talk to each other
+
+We have different ports to run and deploy our different services.All the services map to domain name
+
+
+##########   How this react microservice talk to different microservices?
+
+There are 2 ways to make an API call
+
+1.   loads -> API call -> render
+
+As soon as our page loads, we can make an API call wait until the data comes then render it to the UI.
+
+
+2.   loads -> render -> API call -> re-render
+
+As soon as the page loads what we can render first we can render then make an API call after getting 
+the result from the API call then again re-render it
+
+
+In react, we will be always using 2, that is the better approach - this gives a better UX
+
+Here we are rendering 2 times, react renders UI very fast, we dont bother about the rendering.
 
 
 
