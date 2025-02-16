@@ -405,10 +405,8 @@ Even the whole component gets rendered, only it will update the changed state va
 Whenever state variable update, react triggers a reconcilition cycle(re-renders the component).
 
 
-
-
-
-
+when will the useEffect will be called - It calls everytime the component is rendered
+Dependency array changes the functionality of render
 
 
 
