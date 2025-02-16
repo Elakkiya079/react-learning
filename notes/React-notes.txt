@@ -390,6 +390,19 @@ In react, we will be always using 2, that is the better approach - this gives a 
 
 Here we are rendering 2 times, react renders UI very fast, we dont bother about the rendering.
 
+Why do we create or need state varibales?
+
+If we use the normal javascript variable instead of useState it will not get updated in the UI,
+
+But if we use useState , while updating the variable it will render the component again and the value is
+getting updated.
+
+In useState we are updating the const variable is it violating the javascript rules, after setState it will
+render the component all over again so that it will be considered as a new variable.
+
+Even the whole component gets rendered, only it will update the changed state variable.
+
+Whenever state variable update, react triggers a reconcilition cycle(re-renders the component).
 
 
 
