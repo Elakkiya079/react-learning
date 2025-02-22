@@ -410,11 +410,33 @@ Dependency array changes the functionality of render
 
 
 
+------------------------------------------Class 7 ------------------------------------
+
+React Router DOM
+
+createBrowserRouter - we are passing configuration inside this createBrowserRouter what it will do is
+it will pass the information of what will happen on the specific route.
+
+RouterProvider - provide all the router configuration to this RouterProvider
+
+For the Error pages there is one hook called useRouterError provided by react-router-dom it provides
+more information about the error that you are facing
+
+Outlet -its a kind of tunel all the children going inside this come over here in place of outlet
 
 
+**** If you want to add anything as a link <a /> - dont use <a /> tag in react 
+   because when we click on that the whole page will get refreshes the components
+   instead use <Link /> from react-router-dom
 
+   BEhind the scenes its using <a/> tag
 
+Thats why react application are called Single Page application
+   App is a single component , only we are changing the components based on the requirments via client side routing
 
-
-
+# 2 types of routing
+   - Client Side routing -> but here at the start of loading the page all the component being rendered already
+   if we click on the aboutus link tag the data just gets displayed
+   - Server Side routing -> you make the network call by clicking on the aboutus anchor tag,the aboutus html
+   page coming from the server
 
