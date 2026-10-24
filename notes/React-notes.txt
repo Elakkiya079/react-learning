@@ -2,7 +2,8 @@ React
 
 -----------------------------------------------------------------Class 1 -----------------------------------------------------------------
 
-Its a popular javascript library developed by facebook for building UI especially the single page application where data changes dynamically.It allows the developers to create reusable UI components to make the code easier and scalable.
+Its a popular javascript library developed by facebook for building UI especially the single page application where data changes dynamically.
+It allows the developers to create reusable UI components to make the code easier and scalable.
 
 
 Difference between library and framework
@@ -52,14 +53,25 @@ Dynamic interaction : interactive and dynamic UI responds quickly to user action
 
 What is CDN? Why do we use it ?
 
+It is a network of servers that distributed accross different locations that delivers files like javascript,css, images
+and libraries to users from a server close to them
 
 What is crossOrigin in script tag?
 
+crossOrigin is <script> tag that tells browser that how to handle script that loads from a different origin(domain). It allows the browser 
+to make the request without credentials and enables proper CORS handling.
 
 What is the difference between React and ReactDOM?
 
+React = build/describes the UI (the core library that helps to create components and UI)
+ReactDOM = pulls that UI into the browser DOM (it is the library that connects the REact with the browser's DOM)
 
-What is the difference between react.development.js and react.pri=oduction.js?
+What is the difference between react.development.js and react.production.js?
+
+react.development.js = used while developing the application (it contains the core react code)
+   It contatins additional : warningns, error messages, development checks, debugging information, helpful messages when you use React incorrectly.
+react.production.js = Used when your application deployed to users
+   The production build:removes most deployment warnings/checks, removes unnecessary debugging information, is optimized for performance.
 
 How to initialize local repository as git repository?
 
@@ -77,7 +89,9 @@ All the libraries, packages are hosted in npm
 
 ----------------------------------------------------------Class 2 --------------------------------------------------------
 
-npm - it manages packages but it does not stand for node package manager
+npm - it manages packages but it does not stand for node package manager. 
+Its a standard repository for all the packages.
+
 
 npm init - create the configuration file called package.json
 package.json - it is a configuration for npm
@@ -282,6 +296,24 @@ We have to render a component like root.render(<HeaderComponent />)
 
 ** what is component composition - combining component into one another
 
+Advantages of using JSX.
+1 -  Sanitizes the data
+If someone gets access to your JS code and sends some malicious
+data which will then get displayed on the screen, that attack is
+called cross-site scripting.
+It can read cookies, local storage, session storage, get
+cookies, get info about your device, and read data. JSx takes
+care of your data.
+If some API passes some malicious data JSX will escape it. It
+prevents cross-site scripting and sanitizes the data before
+rendering
+2 -  Makes code readable
+JSX makes it easier to write code as we are no longer creating
+elements using React.createElement()
+3 -  Makes code simple and elegant
+4 -  Show more useful errors and warnings
+5 -  JSX prevents code injections (attacks)
+
 
 ---------------------------------Clas 4 ------------------------------------------------
 
@@ -291,6 +323,12 @@ props - props is nothing but the short form of properties
 props we can use it like pass the properties to components
 
 Its same like passing an argument to the functions
+
+props is an object
+
+What swiggy api's are done is config driven UI - For ex: i am in chennai at the top we are seeing carousel for offers list ,if someone in delhi they see different offers which means swiggy developed an application for 
+chennai and then one application for delhi no its not , its driven because of data
+-> based on the data driven from api's the offers or the UI differs which is known as config driven UI
 
 
 keys 
@@ -304,9 +342,65 @@ But if we gave unique id's then react will render the new id over there that's i
 
 ****** Dont use indexes as the key - react will not recommend this
 
-Why we will not use index as a key?
+----> Why we will not use index as a key?
 
+When rendering lists in React using .map(), you’ve probably seen or even written something like this:
 
+{items.map((item, index) => (
+  <div key={index}>{item.name}</div>
+))}
+At first glance, it works. But using index as a key in React can lead to subtle and frustrating bugs. Let’s dive into why this happens and how to avoid it.
+
+🧠 How React Uses Keys
+React uses keys to identify which items in a list have changed, been added, or removed. This helps React apply efficient updates to the DOM.
+
+Keys should be stable, predictable, and unique.
+
+When a key changes, React assumes it’s a different element and may unmount and remount components unnecessarily. This is where using index can backfire.
+
+⚠️ The Problem with Using index as a Key
+If your list changes — say, an item is added or removed — the index of every subsequent item shifts. This causes mismatches between keys and components, leading to:
+
+Unnecessary re-renders
+Loss of component state (e.g., input values resetting)
+Unexpected UI behavior
+Example
+Let’s say you have a list of input fields:
+
+{items.map((item, index) => (
+  <input key={index} value={item.text} onChange={...} />
+))}
+Now imagine inserting a new item at the top of the list. All existing inputs shift down, but because the keys (indexes) change, React sees them as new elements. 
+The result? Input values reset — and your users lose their data.
+
+✅ What to Use Instead
+The best approach is to use a stable and unique ID for each item — ideally something that comes from your backend or database.
+
+{items.map((item) => (
+  <div key={item.id}>{item.name}</div>
+))}
+If your data doesn’t have a unique ID, consider generating one when the data is fetched or constructed. You can also combine fields that are unlikely to collide:
+
+const key = `${item.title}_${item.author}`;
+Or use a UUID generator when necessary (though avoid generating new UUIDs on every render):
+
+import { v4 as uuidv4 } from 'uuid';
+
+// Example (ensure UUIDs are generated once and reused)
+🧘‍♂️ When index Is Acceptable
+There are a few narrow cases where using the index as a key is okay:
+
+The list is static and never changes
+The list is rendered once and doesn’t support reordering, inserting, or removing items
+But in any dynamic UI, relying on index is a risky bet.
+
+🔚 Summary
+Avoid using index as a key unless you're 100% sure the list won’t change. It might work fine during development, but bugs will surface in real-world use. Instead:
+
+Prefer unique IDs from your data
+Generate composite keys if necessary
+Use index only for static lists
+React’s key mechanism is powerful — use it wisely to ensure a bug-free and performant UI.
 
 ------------------------------------class 5 ----------------------------------------
 
