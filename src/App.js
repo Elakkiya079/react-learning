@@ -9,24 +9,6 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 
-/**
- * Header
- *  -Logo
- *  -Menu Items
- *  -Cart
- * Body
- *  -Search
- *  -Restaurant Container
- *    -Restro Cards
- *      -Res Image
- *      -Name of res, star rating, cuisines, delivery time
- * Footer
- *  -Copyright
- *  -Address
- *  -Links
- *  -Contact
- */
-
 const AppLayout = () => {
   return (
     <div className="app">
@@ -43,29 +25,29 @@ const AppLayout = () => {
 };
 
 const appRouter = createBrowserRouter([
-  {
-    path: "/",
-    element: <AppLayout />,
-    children: [
-      {
-        path: "/",
-        element: <BodyComp />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/restaurant/:resId",
-        element: <RestaurantMenu />,
-      },
-    ],
-    errorElement: <Error />,
-  },
+	{
+		path: "/",
+		element: <AppLayout />,
+		children: [
+			{
+				path: "/",
+				element: <BodyComp />,
+			},
+			{
+				path: "/about",
+				element: <About />,
+			},
+			{
+				path: "/contact",
+				element: <Contact />,
+			},
+			{
+				path: "/restaurant/:resId",
+				element: <RestaurantMenu />,
+			},
+		],
+		errorElement: <Error />,
+	},
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
