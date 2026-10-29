@@ -581,3 +581,50 @@ Thats why react application are called Single Page application
 
 
 ------------------------------------------Class 8 ------------------------------------
+
+class based component are the older way of writing code. At the end its the normal javascript class
+
+Functional component is nothing but the normal way of writing javascript functions.
+
+ex: class <Component Name> extends React.Component
+
+this extends React.Component will make react know this is the class based component
+
+In function based component return method returns the piece of jsx that displays in the UI
+
+In the class based component uses render() method to return the piece of jsx which displays in the UI
+
+--> How to pass props in class component
+
+Ex: constructor(props){
+   super(props)
+}
+
+always we need to use this super(props) and why?
+
+In JavaScript, super refers to the parent class constructor. (In our example, it points to the React.Component implementation.)
+
+To understand super(props), it's essential to know a bit about JavaScript classes and inheritance. In JavaScript, classes can inherit properties and methods from other classes. This is done using the extends keyword.
+
+When a class is derived from another class, the derived class inherits the properties and methods of the base class. The super keyword is used to call the constructor of the base class and initialize the this context in the derived class.
+
+The super Keyword
+The super keyword refers to the parent class. When used in a constructor, it must be called before accessing this in the derived class. Failing to call super before accessing this will result in a ReferenceError.
+
+The props Argument
+In React, components can accept inputs, called props, which are passed down from parent components. When we define a class component, we often want to access these props within our component.
+
+The Constructor in React Components
+In React class components, the constructor is used for two main purposes:
+
+Initializing state: If you need to set the initial state of your component, you can do so in the constructor.
+Binding event handlers: If you need to bind methods to the class in stance, you can do this in the constructor.
+
+--- > Why Call super(props)?
+
+1. Accessing this.props When you call super(props), you pass the props argument to the constructor of the parent class, which is React.Component in this case. This allows you to access this.props inside the constructor and throughout the component.Without calling super(props), this.props would be undefined inside the constructor, which could lead to unexpected behavior and bugs.
+2. Ensuring Proper Initialization
+Calling super(props) ensures that the base class (React.Component) is properly initialized with the props passed to it. This is necessary for React's internal component management and lifecycle methods to work correctly.
+3. Following ES6 Class Syntax Rules
+According to the ES6 class specification, if a derived class has a constructor, it must call super() before accessing this. This is a rule enforced by JavaScript to ensure that the base class is properly initialized.
+
