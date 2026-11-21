@@ -578,7 +578,43 @@ Thats why react application are called Single Page application
    - Server Side routing -> you make the network call by clicking on the aboutus anchor tag,the aboutus html
    page coming from the server
 
+---> Read about createHashRouter , createMemoryRouter from React Router docs.
+1.  createHashRouter  - createHashRouter is part of the React Router library and provides routing capabilities for single-page applications (SPAs). It's commonly
+used for building client-side navigation within applications. Unlike traditional server-side routing, it uses the fragment identifier (hash) in the URL to manage
+and handle routes on the client side. This means that changes in the URL after the # symbol do not trigger a full page reload, making it suitable for SPAs.
 
+To use createHashRouter, we typically import it from the React Router library and
+define our routes using Route components. Here's a basic example of how you
+might use it:
+
+
+import { createHashRouter, Route } from 'react-router-dom';
+const App = () => (
+ <createHashRouter>
+ <Route path="/" component={Home} />
+ <Route path="/about" component={About} />
+ <Route path="/contact" component={Contact} />
+ </createHashRouter>
+);
+
+
+1. createMemoryRouter  - createMemoryRouter is another routing component provided by React Router. Unlike createHashRouter or BrowserRouter,
+createMemoryRouter is not associated with the browser's URL. Instead, it allows you to create an in-memory router for testing or other scenarios where
+you don't want to interact with the actual browser's URL.
+
+💡 Here's a simple example of how to use createMemoryRouter:
+import { createMemoryRouter, Route } from 'react-router-dom';
+const App = () => (
+ <createMemoryRouter>
+ <Route path="/" component={Home} />
+ <Route path="/about" component={About} />
+ <Route path="/contact" component={Contact} />
+ </createMemoryRouter>
+);
+
+In both cases, we define our application's routes within the router component and specify the components to render for each route. The choice
+between  createHashRouter  and  createMemoryRouter  depends on our specific use case, such as whether we're building an SPA that interacts with the browser's URL or a
+scenario where we need an in-memory router for testing.
 
 ------------------------------------------Class 8 ------------------------------------
 
@@ -628,3 +664,187 @@ Calling super(props) ensures that the base class (React.Component) is properly i
 3. Following ES6 Class Syntax Rules
 According to the ES6 class specification, if a derived class has a constructor, it must call super() before accessing this. This is a rule enforced by JavaScript to ensure that the base class is properly initialized.
 
+--> Basically when we load the class based components on to the web page, that means we are creating new instance of the class, and giving it some props after the load the class component,
+the constructor is called, sothe best place to create state variables inside the class based components is inside the constructor.
+
+** this.state - its a whole state object it contains state variables
+
+--> How to update the state variables inside the class component using the 
+this.setState={}
+this state is a big object we can use any number of state variables to update inside this, what it will do is it will
+pick the exact state variable to update and update that one itself.
+
+-----> ******************** Life cycle of class based components ***********************
+
+How react components work behind the scenes - Take the example as the AboutUs page, When the About page is rendered Or
+mounted on the web page it starts renders the jsx on the page.
+
+when jsx from the About page is rendering it sees the UserClass so its starts rendering the UserClass
+
+1.Now instance of the class is created, what happens when the class is called or instansiated
+2.constructor is called,then
+3.render is called
+-- like the constructor and the render, react gives one more thing called the componentDidMount
+4.once the class based component is mounted on to the DOM, then the componentDidMount will called
+-- what happens if the componentDidMount is inside the parent as well as the child component.
+   1.Parent component constructer is called and then the parent component render will be called, inside that the child component rendering is there.
+   2.Now the child component constructor will be called then the render then the componentDidMount
+   3.Once its finished rendering it goes to parent compoent then the parent components componentDidMount will be called.
+
+-- ComponentDidMount - what is the use of it and why react gave this
+
+We need to do some functionalities after the component is mounted successfully on to the web page
+
+- Its used to make an api calls in the class component.
+
+In react what we will do is render the component -> make an api call with that data -> we will again re-render the component and fill the data.
+Otherwise the data will not render until it returns the data from the api. -------> same like in the class component
+
+--> If multiple children are inside the parent component how it will be rendered assumptions
+
+// ** 
+   - Parent constructor
+   - Parent render
+      - Child 1 constructor
+      - Child 1 render
+      - child 1 componentDidMount
+
+      - Child 2 constructor
+      - Child 2 render
+      - child 2 componentDidMount 
+   - Parent componentDidMount
+** //
+
+This is at first we will think the render will work but the above one is wrong. Instead,the correct one is
+
+/* 
+   - Parent constructor
+   - Parent render
+      - Child 1 constructor
+      - Child 1 render
+
+      - Child 2 constructor
+      - Child 2 render
+
+      <HERE DOM UPDATION/MANIPULATION STARTED IN A SINGLE BATCH>
+
+      - child 1 componentDidMount
+      - child 2 componentDidMount 
+   - Parent componentDidMount
+*/
+
+What is happening behind the scenes, react is optimizing it , but in what way,
+
+To understand about this very clearly first seee this diagram - https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+React has two phases,
+
+1. Render phase
+2. Commit phase
+
+The constructor and render is called in the render phase and the react updates the DOM and the componentDidMount called in the commit phase.
+what happens is there are 2 childs in the about component, so it will batch the constructor and render phase of 2 childs and then
+it will batch the commit phase -  react will do the optimization strategy for us for fast loading.
+
+-> Why react is doing this , why this batch process is happening what is the use of it - 
+In the commit phase DOM manipulation is happening and its a very expensive task and it takes lot of time, so that reaxt batching up the process
+for all the childrens and it will be very fast.
+
+
+Now the updates in the component life cycle
+
+Let’s take the UserClass
+1.Initially the constructor will mounted on to the web page
+2.Then the render method called
+3.In the render phase it initially loads the webpage with the dummy/default data provided
+4.Then the componentDidMount will be called
+   4.1 Now comes to the updating phase starts, in this this.setState will be called
+   4.2 the set State will update the default state values then the render will call once again
+   4.3 then it will the componentDidUpdate
+
+/// MOUNTING LIFE CYCLE *****
+
+---MOUNTING CYCLE
+Constructor(DUMMY)
+RENDER(DUMMY)
+   HTML (DUMMY)
+COMPONENT DID MOUNT
+   <API CALL>
+   <THIS.SETSTATE>
+---UPDATE CYCLE
+RENDER(API DATA)
+HTML(NEW API DATA)
+COMPONENT DID UPDATE
+--UNMOUNTING
+COMPONENT WILL UNMOUNT
+
+*** component did update -
+*** component will unmount - mounting means showing on to the UI, unmount means removing it from the UI,
+when it will called if we move to other page
+
+
+######## Never compare the react life cycle methods to react components, like componentDidMount is equivalent
+to useEffect() this is wrong
+
+After the render called component did mount will be called after that, all the subsequent renders
+it will be updated not mounted again and again.
+
+When in modern code base like the use effect and all these they remove the lifecycle methods
+
+
+In useEffect if we put dependency array as empty [] it will call once after the render
+if we put dependency array as [count] it will call everytime the count changes
+----how do we replicate this is in class based component?
+
+componentDidUpdate will call after every update
+
+--- when we will use the componentwill unmount?
+
+for cleanup (in deep ) - it called when leaving the page (its a single page contains components)
+
+ex: this part of code is called inside the componentDidMount, what it will happen is even after leaving to 
+other component still this will called every second , we need to stop this at one point (ex:when move to other page)
+setInterval(()=>{
+   console.log("set interval called")
+},1000)
+
+Now we saw 5 lifecycle methods, but when react created there were more number of lifecycle methods.
+
+***why we are not able to use the async in the useEffect callback but we are writing async in the componentDidMount?
+
+ (Research) Why can't we have the callback
+function of useEffect async ?
+A: In React, the  useEffect  hook is designed to handle side effects in functional components. It's a powerful and flexible tool for managing asynchronous
+operations, such as data fetching, API calls, and more. However, useEffect itself cannot directly accept an async callback function. This is because useEffect
+expects its callback function to return either nothing (i.e., undefined) or a cleanup function, and it doesn't work well with Promises returned from async functions.
+There are a few reasons for this:
+   Return Value Expectation - The primary purpose of the useEffect callback function is to handle side effects and perform cleanup. React expects us to either return
+nothing (i.e., undefined) from the callback or return a cleanup function. An async function returns a Promise, and it doesn't fit well with this expected behavior.
+   Execution Order and Timing - With async functions, we might not have fine-grained control over the execution order of the asynchronous code and the cleanup code.
+React relies on the returned cleanup function to handle cleanup when the component is unmounted or when the dependencies specified in the useEffect
+dependency array change. If you return a Promise, React doesn't know when or how to handle cleanup.
+To work with async operations within a useEffect, we can use the following pattern:
+useEffect(() => {
+ const fetchData = async () => {
+ try {
+ // Perform asynchronous operations
+ const result = await someAsyncOperation();
+ // Update the state with the result
+ setState(result);
+ } catch (error) {
+ // Handle errors
+ console.error(error);
+ }
+ };
+ fetchData(); // Call the async function
+ return () => {
+ // Cleanup code, if necessary
+ // This function will be called when the component unmounts or when dependencies change
+ };
+}, [/* dependency array */]);
+
+In this pattern, we define an async function within the useEffect callback, perform our asynchronous operations, and then call that function. Additionally, we return a
+cleanup function from the useEffect to handle any necessary cleanup tasks when the component unmounts or when specified dependencies change.
+
+By using this approach, we can effectively manage asynchronous operations with useEffect while adhering to React's expectations for the callback function's return
+value.
