@@ -3,6 +3,7 @@ import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 const BodyComp = () => {
 	const [listOfRestaurant, setListOfRestaurant] = useState([]);
 	const [filteredRestaurants, setFilteredRestaurants] = useState([]);
@@ -32,6 +33,9 @@ const BodyComp = () => {
 	//    return <Shimmer/>
 	//}
 
+	const onlineStatus = useOnlineStatus();
+
+	if(onlineStatus === false) return <h1>Looks like you are offine ! check internet!</h1>
 	return listOfRestaurant?.length === 0 ?
 			<Shimmer />
 		:	<div className="body">

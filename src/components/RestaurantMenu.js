@@ -2,23 +2,24 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { redirect, useParams } from "react-router";
 import { MENU_API } from "../utils/constants";
-
+import useRestaurantMenu from "../utils/useRestaurantMenu"
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
+  //const [resInfo, setResInfo] = useState(null);
   const { resId } = useParams();
   console.log(resId);
-  useEffect(() => {
-    if (resId) fetchMenu();
-  }, []);
-  const fetchMenu = async () => {
-    //const data = await fetch(
-    //  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=10.878039&lng=77.021686&restaurantId=229"
-    //);
-    const data = await fetch(MENU_API + resId);
-    console.log(data);
-    const json = await data.json();
-    setResInfo(json?.data || {});
-  };
+  const resInfo = useRestaurantMenu(resId);
+  //useEffect(() => {
+  //  if (resId) fetchMenu();
+  //}, []);
+  //const fetchMenu = async () => {
+  //  //const data = await fetch(
+  //  //  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=10.878039&lng=77.021686&restaurantId=229"
+  //  //);
+  //  const data = await fetch(MENU_API + resId);
+  //  console.log(data);
+  //  const json = await data.json();
+  //  setResInfo(json?.data || {});
+  //};
   console.log(resInfo?.cards[2]);
   if (resInfo == null) return <Shimmer />;
   const { name, cuisines, costForTwoMessage } =
