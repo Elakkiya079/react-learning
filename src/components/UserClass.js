@@ -51,7 +51,7 @@ class UserClass extends React.Component {
         const { login, location, avatar_url } = this.state.userInfo;
 		//const { count} = this.state;
 		return (
-			<div className="user-card">
+			<div className="user-card  m-4 p-4 bg-gray-50 rounded-lg">
 				{/*<h1>Count = {count}</h1>*/}
 				{/*<h1>Count 2 = {count2}</h1>*/}
 				{/*<button onClick={()=>{
@@ -60,9 +60,9 @@ class UserClass extends React.Component {
                     })
                 }}>Increase Count</button>
 				*/}
-                <img src={avatar_url} />
+				<img src={avatar_url} />
 				<h3>Name : {login}</h3>
-				<h3>Location : {location ? location : 'Aruppukottai'}</h3>
+				<h3>Location : {location ? location : "Aruppukottai"}</h3>
 				<h3>Contact : elakia79@gmail.com</h3>
 			</div>
 		);

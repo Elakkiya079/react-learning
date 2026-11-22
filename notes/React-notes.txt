@@ -1074,3 +1074,27 @@ Concurrent Mode leverages Suspense to handle asynchronous rendering and data fet
 
 In summary, you need to use Suspense in React when you want to create a more responsive, efficient, and user-friendly application by simplifying the handling of
 asynchronous operations and providing a better user experience during data fetching and code splitting.
+
+
+------------------------------------------Class 10 ------------------------------------
+
+Tailwind css  - its not only a react thing, it works well with react but also with other frameworks as well.
+
+
+
+1.configure tailwind into oru project
+2. to incorporate tailwind into our project we have to run these commands
+   npm install tailwindcss @tailwindcss/postcss
+we know about tailwindcss but what is that about postcss , it's tool for transforming css along with javascript.
+tailwind css use postcss behind the scenes.
+
+tailwind offers you classname automatically for every css that you want to write in our app
+
+flex = horizontally align items
+w-12 = provide width of the elements
+p-4 = provide padding
+m-4 = provide margin
+justify-between = align items left and right end
+px = padding applied for both right and left x-axis
+py = padding applied for top and bottom y-axis
+w-[200px] = for using dynamic cases

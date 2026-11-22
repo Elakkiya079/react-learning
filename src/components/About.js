@@ -27,8 +27,8 @@ class About extends React.Component {
 
 		return (
 			<div>
-				<h1>About</h1>
-				<h2>This is React Learning</h2>
+				{/*<h1>About</h1>
+				<h2>This is React Learning</h2>*/}
 				{/*<User name={"Elakkiya (function)"} />*/}
 				<UserClass name={"Elakkiya (class)"} />
 				{/*<UserClass name={"Chander (class)"} />*/}
