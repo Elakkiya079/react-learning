@@ -8,4 +8,7 @@ export const LOGO_URL =
 //export const MENU_API =
 //	"https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0895&lng=80.2739&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
-export const MENU_API = "https://namastedev.com/api/v1/listRestaurantMenu/";
+//export const MENU_API = "https://namastedev.com/api/v1/listRestaurantMenu/";
+
+export const MENU_API =
+	"https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=13.0895&lng=80.2739&restaurantId=";

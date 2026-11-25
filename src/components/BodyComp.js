@@ -1,4 +1,4 @@
-import RestaurantCards from "./RestaurantCards";
+import RestaurantCards,{withPromotedLabel} from "./RestaurantCards";
 import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
@@ -8,23 +8,31 @@ const BodyComp = () => {
 	const [listOfRestaurant, setListOfRestaurant] = useState([]);
 	const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 	const [searchText, setSearchText] = useState("");
+	const RestaurantCardPromoted =withPromotedLabel(RestaurantCards);
+	//console.log('list of restaurant',listOfRestaurant)
 	useEffect(() => {
 		fetchData();
 	}, []);
-	console.log("value cleared");
 	const fetchData = async () => {
-		const data = await fetch("https://namastedev.com/api/v1/listRestaurants");
-		console.log("data", data);
-		const json = await data.json();
-		console.log(json);
-		console.log(
-			json.data.data.cards[1].card.card.gridElements?.infoWithStyle.restaurants,
+		const targetUrl =
+			"https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0895&lng=80.2739&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+		const data = await fetch(
+			"https://corsproxy.io/?key=3fbb2639&url=" + encodeURIComponent(targetUrl),
 		);
+		const text = await data.text();
+		if (!text) {
+			console.error("Restaurant list returned an empty response", data.status);
+			return;
+		}
+		const json = JSON.parse(text);
+		//console.log(
+		//	json.data.cards[1].card.card.gridElements?.infoWithStyle.restaurants,
+		//);
 		setListOfRestaurant(
-			json.data.data.cards[1].card.card.gridElements?.infoWithStyle.restaurants,
+			json.data.cards[1].card.card.gridElements?.infoWithStyle.restaurants,
 		);
 		setFilteredRestaurants(
-			json.data.data.cards[1].card.card.gridElements?.infoWithStyle.restaurants,
+			json.data.cards[1].card.card.gridElements?.infoWithStyle.restaurants,
 		);
 	};
 
@@ -87,6 +95,7 @@ const BodyComp = () => {
 						</button>
 					</div>
 				</div>
+				{/*{console.log('filteredRes----',filteredRestaurants)}*/}
 				<div className="res-container flex flex-wrap">
 					{filteredRestaurants.length == 0 ?
 						<h1>No Restaurants found..</h1>
@@ -94,7 +103,10 @@ const BodyComp = () => {
 							<Link
 								to={"/restaurant/" + restaurant.info.id}
 								key={restaurant.info.id}>
-								<RestaurantCards resData={restaurant} />
+								{console.log(restaurant.info?.isOpen,'open list')}
+								{restaurant.info?.isOpen ?
+									<RestaurantCardPromoted resData={restaurant} />
+								:	<RestaurantCards resData={restaurant} />}
 							</Link>
 						))
 					}

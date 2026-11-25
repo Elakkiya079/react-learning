@@ -8,6 +8,7 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
   console.log(resId);
   const resInfo = useRestaurantMenu(resId);
+  console.log('resinfodata---->',resInfo)
   //useEffect(() => {
   //  if (resId) fetchMenu();
   //}, []);
@@ -20,13 +21,20 @@ const RestaurantMenu = () => {
   //  const json = await data.json();
   //  setResInfo(json?.data || {});
   //};
-  console.log(resInfo?.cards[2]);
   if (resInfo == null) return <Shimmer />;
-  const { name, cuisines, costForTwoMessage } =
-    resInfo?.cards[2]?.card?.card?.info;
-
-  const { itemCards } =
-    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card?.card;
+  const { name, cuisines = [], costForTwoMessage } =
+    resInfo?.cards?.map((card) => card?.card?.card?.info).find((info) => info?.name) ||
+    {};
+  const regularCards =
+    resInfo?.cards?.find((card) => card.groupedCard)?.groupedCard?.cardGroupMap
+      ?.REGULAR?.cards || [];
+  const itemCards = regularCards.flatMap((category) => {
+    const card = category?.card?.card;
+    if (card?.itemCards) return card.itemCards;
+    return (card?.categories || []).flatMap(
+      (nested) => nested?.itemCards || [],
+    );
+  });
   //const { itemCardsRecommended } =
   //  resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
   return (
@@ -37,11 +45,15 @@ const RestaurantMenu = () => {
       </h3>
       <h2>Menu</h2>
       <ul>
-        {itemCards.map((item) => (
-          <li key={item.card.info.id}>
-            {item.card.info.name} - Rs.{item.card.info.price / 100}
-          </li>
-        ))}
+        {itemCards.map((item, index) => {
+          const info = item?.card?.info || {};
+          const price = info.price || info.defaultPrice || 0;
+          return (
+            <li key={`${info.id}-${index}`}>
+              {info.name} - Rs.{price / 100}
+            </li>
+          );
+        })}
       </ul>
       {/*<ul>
         {itemCardsRecommended.map((item) => (

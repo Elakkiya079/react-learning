@@ -1098,3 +1098,17 @@ justify-between = align items left and right end
 px = padding applied for both right and left x-axis
 py = padding applied for top and bottom y-axis
 w-[200px] = for using dynamic cases
+
+
+------------------------------------------Class 11 ------------------------------------
+
+Higher order components - its a function that takes a component as an input and it enhances the component,
+add some extra features to the functions and returns a component.
+
+For example lets take the swiggy page it shows all the restaurant cards and in some cards it shows the
+promoted label.
+
+When we write higher components, these are pure functions what it means is,
+Ex:we are using the Restuarant Card component, we are not changing the features of that component or modify anything in that
+just adding the extra features on top of it, just enhancing it.
+
